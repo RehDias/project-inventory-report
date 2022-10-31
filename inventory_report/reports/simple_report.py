@@ -4,7 +4,7 @@ from datetime import datetime, date
 class SimpleReport:
     def get_fabricacao(lista):
         fabricacao = [item['data_de_fabricacao'] for item in lista]
-        return fabricacao[:2:-1][0]
+        return min(fabricacao)
 
     def get_validade(lista):
         validade = [
@@ -12,7 +12,7 @@ class SimpleReport:
           if datetime.strptime(item['data_de_validade'], "%Y-%m-%d").date()
           > date.today()
           ]
-        return validade
+        return min(validade)
 
     def get_empresas(lista):
         empresas = [item['nome_da_empresa'] for item in lista]
@@ -30,6 +30,6 @@ class SimpleReport:
 
         return (
                 f"Data de fabricação mais antiga: {fabricacao_mais_antiga}\n"
-                f"Data de validade mais próxima: {validade_mais_proxima[-1]}\n"
+                f"Data de validade mais próxima: {validade_mais_proxima}\n"
                 f"Empresa com mais produtos: {empresa_com_mais_produtos[0]}"
               )
