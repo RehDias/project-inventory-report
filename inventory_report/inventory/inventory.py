@@ -37,4 +37,4 @@ class Inventory:
         elif path_file.endswith('xml'):
             return cls.read_xml_file(path_file, file_type)
         else:
-            raise FileExistsError
+            raise ValueError
